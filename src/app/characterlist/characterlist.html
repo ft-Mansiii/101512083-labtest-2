@@ -1,0 +1,33 @@
+<h1>Harry Potter Character List</h1>
+
+<app-characterfilter
+  (houseSelected)="filterByHouse($event)"
+  (resetSelected)="resetFilter()">
+</app-characterfilter>
+
+<div *ngIf="loading">Loading characters...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div class="grid">
+  <mat-card class="character-card" *ngFor="let character of characters">
+    <img
+      mat-card-image
+      [src]="character.image || 'https://via.placeholder.com/300x400?text=No+Image'"
+      [alt]="character.name"
+      class="character-image"
+    />
+
+    <mat-card-content>
+      <h2>{{ character.name }}</h2>
+      <p><strong>House:</strong> {{ character.house || 'No House' }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="showDetails(character)">
+        View Details
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<app-characterdetails [character]="selectedCharacter"></app-characterdetails>

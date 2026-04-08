@@ -1,0 +1,13 @@
+<div class="filter-box">
+  <mat-form-field appearance="outline">
+    <mat-label>Select House</mat-label>
+    <mat-select [(ngModel)]="selectedHouse">
+      <mat-option *ngFor="let house of houses" [value]="house">
+        {{ house }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onFilter()">Filter</button>
+  <button mat-stroked-button color="warn" (click)="onReset()">Reset</button>
+</div>
